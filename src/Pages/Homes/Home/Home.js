@@ -1,9 +1,14 @@
 import React from 'react';
+import Banner from '../Banner.js/Banner';
+import Customer from '../Customer/Customer';
+import '../Home.css'
 
 const Home = () => {
+
     return (
         <div>
-            <h2>Hoem</h2>
+            <Banner></Banner>
+            <Customer></Customer>
         </div>
     );
 };
