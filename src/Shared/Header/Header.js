@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../asset/logo.png'
+import { AuthContext } from '../../context/AuthProvider';
 const Header = () => {
+    const { user, userSignOut } = useContext(AuthContext)
+    console.log(user)
+    const handleSignOut = () => {
+        userSignOut()
+            .then(() => { })
+            .catch(err => console.log(err))
+    }
     const menuItems = <React.Fragment>
         <li> <Link to='/' >Home</Link> </li>
-        <li> <Link to='/login' >Login</Link> </li>
-        <li> <Link to='/signup' >SignUp</Link> </li>
         <li> <Link to='/blogs' >Blogs</Link> </li>
+        {
+            user?.uid ?
+                <>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li><Link onClick={handleSignOut}>SignOut</Link></li>
+                </>
+
+                :
+                <>
+                    <li><Link to='/login'>Login</Link></li>
+                    <li> <Link to='/signup' >SignUp</Link> </li>
+
+                </>
+
+        }
 
 
     </React.Fragment>

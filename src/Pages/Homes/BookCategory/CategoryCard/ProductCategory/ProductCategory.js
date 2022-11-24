@@ -23,7 +23,9 @@ const ProductCategory = ({ product }) => {
                         <div className="badge badge-outline">OldPrice:{OriginalPrice}</div>
                     </div>
                 </div>
-                <button className='btn bg-cyan-700'>Book Now</button>
+                <label htmlFor="product-modal" className='btn bg-cyan-700' >Book Now</label>
+
+
 
             </div>
         </div>
