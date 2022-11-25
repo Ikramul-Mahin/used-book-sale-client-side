@@ -5,6 +5,14 @@ import Home from "../Pages/Homes/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import DashBoardLayout from "../Layout/DashBoardLayout";
+import DashBoard from "../Pages/DashBoards/DashBoard/DashBoard";
+import MyOrders from "../Pages/DashBoards/MyOrders/MyOrders";
+import AllBuyers from "../Pages/DashBoards/AllBuyers/AllBuyers";
+import AddProduct from "../Pages/DashBoards/AddProduct/AddProduct";
+import MyProduct from "../Pages/DashBoards/MyProduct/MyProduct";
+import Blogs from "../Pages/Blogs/Blogs";
+import NoRute from "../Pages/NoRute/NoRute";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -27,8 +35,43 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
+            },
+            {
+                path: '*',
+                element: <NoRute></NoRute>
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashBoardLayout></DashBoardLayout>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <DashBoard></DashBoard>
+            },
+            {
+                path: '/dashboard/myorders',
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: '/dashboard/addproduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/dashboard/myproduct',
+                element: <MyProduct></MyProduct>
+            }
+        ]
+
     }
 ])
 export default router

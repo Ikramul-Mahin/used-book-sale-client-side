@@ -18,7 +18,10 @@ const CategoryProducts = () => {
                 }
             </div>
             <div>
-                <ProductModal></ProductModal>
+                <ProductModal
+                    products={products}
+
+                ></ProductModal>
             </div>
         </div>
     );
