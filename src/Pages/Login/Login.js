@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../hook/useToken';
@@ -25,6 +26,7 @@ const Login = () => {
                 console.log(user)
                 setLoginUserEmail(data.email)
                 navigate(from, { replace: true })
+                toast.success('Successfully Loged In')
 
             })
             .catch(error => {

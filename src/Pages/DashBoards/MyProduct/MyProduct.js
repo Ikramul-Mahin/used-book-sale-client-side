@@ -32,6 +32,7 @@ const MyProduct = () => {
     }
     return (
         <div >
+            <h2 className='text-center text-4xl'>My Product</h2>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
                 {
                     products.map(product => <MyProductCard

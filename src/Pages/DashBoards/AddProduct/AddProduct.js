@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
-    const { loading } = useContext(AuthContext)
+    const { loading, user } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm()
     const imageHostKey = '43322b326f4170e15ea0e047c6b4b095'
     console.log(imageHostKey)
@@ -26,6 +27,7 @@ const AddProduct = () => {
                 if (imgData.success) {
                     console.log(imgData.data.url)
                     const products = {
+                        email: data.email,
                         bookname: data.name,
                         bookimage: imgData.data.url,
                         location: data.location,
@@ -35,6 +37,7 @@ const AddProduct = () => {
                         sellerName: data.sellerName,
                         usedyear: data.usedyear
                     }
+                    console.log(products)
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
                         headers: {
@@ -46,6 +49,7 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result)
+                            toast.success('successfully login')
                             navigate('/dashboard/myproduct')
                         })
                 }
@@ -57,6 +61,15 @@ const AddProduct = () => {
             <h2 className='text-4xl'>Add A Product</h2>
             <form onSubmit={handleSubmit(handleAddDoctor)} >
 
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Email</span> </label>
+                    <input type='text' defaultValue={user?.email}
+                        className="input input-bordered w-full max-w-xs"
+                        {...register("email", {
+                            required: 'name is required'
+                        })}
+                    />
+                </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Name</span> </label>
                     <input type='text'

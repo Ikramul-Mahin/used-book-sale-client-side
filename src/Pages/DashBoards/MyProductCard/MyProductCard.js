@@ -23,8 +23,11 @@ const MyProductCard = ({ product }) => {
                         <div className="badge badge-outline">OldPrice:{OriginalPrice}</div>
                     </div>
                 </div>
-                <label htmlFor="product-modal" className='btn bg-cyan-700' >Book Now</label>
+                {/* <label htmlFor="product-modal" className='btn bg-cyan-700' >Advertise</label> */}
+                <div className='pb-4'>
+                    <button className='btn w-32 text-right bg-cyan-700 ' >Advertise</button>
 
+                </div>
 
 
             </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../hook/useToken';
@@ -26,11 +27,12 @@ const SignUp = () => {
 
                 const userInfo = {
                     displayName: data.name,
-                    seller: data.purpose
+                    // role: data.role
                 }
                 userUpdate(userInfo)
                     .then(() => {
-                        saveUser(data.email, data.name, data.purpose)
+                        saveUser(data.email, data.name, data.role)
+                        toast.success('Successfully Signed Up')
                     })
                     .catch(err => console.log(err));
             })
@@ -39,8 +41,8 @@ const SignUp = () => {
                 setSignUPError(error.message)
             });
     }
-    const saveUser = (email, name, purpose) => {
-        const user = { email, name, purpose };
+    const saveUser = (email, name, role) => {
+        const user = { email, name, role };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -102,7 +104,7 @@ const SignUp = () => {
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"> <span className="label-text">Select If you are Seller!</span> </label>
-                        <select className=' border p-4' {...register("purpose")}>
+                        <select className=' border p-4' {...register("role")}>
                             <option value="user">User</option>
                             <option value="seller">Seller</option>
 

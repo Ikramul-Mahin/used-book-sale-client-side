@@ -13,6 +13,8 @@ import AddProduct from "../Pages/DashBoards/AddProduct/AddProduct";
 import MyProduct from "../Pages/DashBoards/MyProduct/MyProduct";
 import Blogs from "../Pages/Blogs/Blogs";
 import NoRute from "../Pages/NoRute/NoRute";
+import AdminRoute from "./AdminRoute/AdminRoute";
+import AllSellers from "../Pages/DashBoards/AllSellers/AllSellers";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -50,17 +52,21 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashBoardLayout></DashBoardLayout>,
         children: [
-            {
-                path: '/dashboard',
-                element: <DashBoard></DashBoard>
-            },
+            // {
+            //     path: '/dashboard',
+            //     element: <DashBoard></DashBoard>
+            // },
             {
                 path: '/dashboard/myorders',
-                element: <MyOrders></MyOrders>
+                element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
             },
             {
                 path: '/dashboard/allbuyers',
                 element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AllSellers></AllSellers>
             },
             {
                 path: '/dashboard/addproduct',
