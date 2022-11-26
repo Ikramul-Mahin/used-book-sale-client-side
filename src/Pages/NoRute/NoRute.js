@@ -1,9 +1,9 @@
 import React from 'react';
-
+import noroute from '../../asset/2488756.jpg'
 const NoRute = () => {
     return (
         <div>
-            NO PAGE FOUND
+            <img src={noroute} alt="" />
         </div>
     );
 };

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../../component/Loading/Loading';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
-    const { register, formState: { errors }, handleSubmit, isLoading } = useForm()
+    const { loading } = useContext(AuthContext)
+    const { register, formState: { errors }, handleSubmit } = useForm()
     const imageHostKey = '43322b326f4170e15ea0e047c6b4b095'
     console.log(imageHostKey)
     const navigate = useNavigate()
@@ -50,12 +51,10 @@ const AddProduct = () => {
                 }
             })
     }
-    if (isLoading) {
-        return <Loading ></Loading>
-    }
+
     return (
         <div className='w-96 p-7'>
-            <h2 className='text-4xl'>Add A Doctor</h2>
+            <h2 className='text-4xl'>Add A Product</h2>
             <form onSubmit={handleSubmit(handleAddDoctor)} >
 
                 <div className="form-control w-full max-w-xs">

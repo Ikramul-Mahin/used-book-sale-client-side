@@ -1,19 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hook/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { createUser, userUpdate } = useContext(AuthContext)
     const [signUpError, setSignUPError] = useState('')
 
-    // const [createdUserEmail, setCreatedUserEmail] = useState('')
-    // const [token] = useToken(createdUserEmail)
-    // const navigate = useNavigate();
-    // if (token) {
-    //     navigate('/')
-    // }
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
+    const navigate = useNavigate();
+    if (token) {
+        navigate('/')
+    }
 
     const handleSignUp = (data) => {
         setSignUPError('');
@@ -50,6 +51,7 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                setCreatedUserEmail(email)
 
             })
     }
@@ -111,7 +113,7 @@ const SignUp = () => {
                     {signUpError && <p className='text-red-700'>{signUpError}</p>}
 
                 </form>
-                <p>New to Doctors Portal <Link to='/login' className='text-cyan-500'>Already Have an Account</Link></p>
+                <p>New to Book Shop <Link to='/login' className='text-cyan-500'>Already Have an Account</Link></p>
                 <div className="flex flex-col w-full border-opacity-50">
                     <div className="divider">OR</div>
                 </div>
