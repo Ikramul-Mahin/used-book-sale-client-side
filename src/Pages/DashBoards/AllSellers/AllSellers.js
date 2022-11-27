@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Loading from '../../../component/Loading/Loading';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AllSellers = () => {
     const { user } = useContext(AuthContext)
+
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users', user?.role],
         queryFn: async () => {
@@ -21,6 +22,7 @@ const AllSellers = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
     return (
         <div>
             <h2>Allsellers</h2>

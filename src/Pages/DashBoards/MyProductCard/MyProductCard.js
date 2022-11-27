@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyProductCard = ({ product }) => {
     const { bookname, location, bookimage, posteddate, price, OriginalPrice, sellerName, usedyear } = product
-    console.log(product)
+
 
     return (
         <div>

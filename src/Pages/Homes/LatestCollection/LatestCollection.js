@@ -3,13 +3,15 @@ import React, { useContext } from 'react';
 import Loading from '../../../component/Loading/Loading';
 import { AuthContext } from '../../../context/AuthProvider';
 import MyProductCard from '../../DashBoards/MyProductCard/MyProductCard';
+import ProductCategory from '../BookCategory/CategoryCard/ProductCategory/ProductCategory';
+import ProductModal from '../BookCategory/CategoryCard/ProductCategory/ProductModal';
 
 const LatestCollection = () => {
     const { user } = useContext(AuthContext)
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/bookcategories?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer${localStorage.getItem('accessToken')}`
                 }
@@ -28,11 +30,16 @@ const LatestCollection = () => {
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
                 {
-                    products.map(product => <MyProductCard
+                    products.map(product => <ProductCategory
                         product={product}
                         key={product._id}
-                    ></MyProductCard>)
+                    ></ProductCategory>)
                 }
+            </div>
+            <div>
+                <ProductModal
+                    products={products}
+                ></ProductModal>
             </div>
 
             {

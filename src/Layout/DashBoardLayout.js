@@ -20,16 +20,21 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-80  text-base-content">
 
                         <li><Link to="/dashboard/myorders">My Order</Link></li>
-                        <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                        <li><Link to="/dashboard/reported">Reported</Link></li>
+
                         <li><Link to="/dashboard/addproduct">Add A Product</Link></li>
                         <li><Link to="/dashboard/myproduct">My Product</Link></li>
 
-                        {
-                            isAdmin &&
-                            <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
 
+
+                        {
+                            isAdmin && <>
+                                <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
+                                <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
+                                <li><Link to="/dashboard/reported">Reported</Link></li>
+
+                            </>
                         }
+
 
 
 

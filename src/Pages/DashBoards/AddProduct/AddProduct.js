@@ -28,6 +28,7 @@ const AddProduct = () => {
                     console.log(imgData.data.url)
                     const products = {
                         email: data.email,
+                        categoryName: data.categoryName,
                         bookname: data.name,
                         bookimage: imgData.data.url,
                         location: data.location,
@@ -38,7 +39,7 @@ const AddProduct = () => {
                         usedyear: data.usedyear
                     }
                     console.log(products)
-                    fetch('http://localhost:5000/products', {
+                    fetch('http://localhost:5000/bookcategories', {
                         method: 'POST',
                         headers: {
                             "content-type": 'application/json',
@@ -69,6 +70,15 @@ const AddProduct = () => {
                             required: 'name is required'
                         })}
                     />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Select category</span> </label>
+                    <select className=' border p-4' {...register("categoryName")}>
+                        <option value="History">History</option>
+                        <option value="Story">Story</option>
+                        <option value="Idology">Idology</option>
+
+                    </select>
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Name</span> </label>

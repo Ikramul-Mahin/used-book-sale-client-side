@@ -9,9 +9,9 @@ const CategoryCard = ({ category }) => {
                     <img src={category.img} alt="Shoes" className="h-56 w-full" />
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title text-gray-600">{category.name}</h2>
+                    <h2 className="card-title text-gray-600">{category.categoryName}</h2>
                     <div className="card-actions">
-                        <Link to={`/categories/${category._id}`}>
+                        <Link to={`/categories/${category.categoryName}`}>
                             <button className="btn btn-primary bg-cyan-700">Used Books</button>
                         </Link>
                     </div>

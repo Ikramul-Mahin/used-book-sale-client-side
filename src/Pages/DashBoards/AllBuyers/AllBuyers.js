@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const AllBuyers = () => {
     const { data: users = [], refetch } = useQuery({
@@ -20,7 +21,9 @@ const AllBuyers = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.modifiedCount > 0) {
+                    toast.success('successfully make admin')
                     refetch()
                 }
             })
@@ -46,7 +49,7 @@ const AllBuyers = () => {
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
+                                    <td>{user?.role !== 'admin ' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
                                     <td><button className='btn btn-xs btn-danger'>Delete</button></td>
                                 </tr>)
                             }

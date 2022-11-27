@@ -9,11 +9,15 @@ const ProductModal = ({ products }) => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
+        const bookname = form.email.value;
+        const OriginalPrice = form.email.value;
         const location = form.location.value;
         const phone = form.phone.value;
         const booking = {
             name,
             email,
+            bookname,
+            OriginalPrice,
             location,
             phone,
         }
@@ -46,6 +50,8 @@ const ProductModal = ({ products }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="name" type="text" defaultValue={user?.displayName} className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} placeholder="Email Address" className="input w-full input-bordered" />
+                        <input name="bookname" type="text" defaultValue={products.bookname} className="input w-full input-bordered" />
+                        <input name="OriginalPrice" type="email" defaultValue={products.OriginalPrice} className="input w-full input-bordered" />
                         <input name="location" type="text" placeholder="Your Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <br />
