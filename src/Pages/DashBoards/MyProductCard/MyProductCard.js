@@ -23,10 +23,13 @@ const MyProductCard = ({ product }) => {
                         <div className="badge badge-outline">OldPrice:{OriginalPrice}</div>
                     </div>
                 </div>
-                {/* <label htmlFor="product-modal" className='btn bg-cyan-700' >Advertise</label> */}
-                <div className='pb-4'>
-                    <button className='btn w-32 text-right bg-cyan-700 ' >Advertise</button>
 
+                {/* <label htmlFor="product-modal" className='btn bg-cyan-700' >Advertise</label> */}
+                <div className='pb-4 '>
+                    <button className='btn w-32 text-right bg-cyan-700 ' >Advertise</button>
+                    <div className="badge badge-secondary p-4 ml-24">
+                        <p>Available</p>
+                    </div>
                 </div>
 
 

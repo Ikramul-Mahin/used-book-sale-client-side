@@ -9,7 +9,7 @@ const AllSellers = () => {
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users', user?.role],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users?role=${user?.role}`, {
+            const res = await fetch(`http://localhost:5000/users/seller`, {
                 headers: {
                     authorization: `bearer${localStorage.getItem('accessToken')}`
                 }
@@ -25,11 +25,33 @@ const AllSellers = () => {
 
     return (
         <div>
-            <h2>Allsellers</h2>
-            <p>sellers:{users.length}</p>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Veryfied</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            users.map((user, i) => <tr key={user._id}>
+                                <th>{i + 1}</th>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                            </tr>)
+                        }
 
-
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+
+
     );
 };
 
