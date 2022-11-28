@@ -16,6 +16,7 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import AllSellers from "../Pages/DashBoards/AllSellers/AllSellers";
 import SellerRoute from "./SellerRoute/SellerRoute";
 import Reported from "../Pages/DashBoards/Reported/Reported";
+import DashBoard from "../Pages/DashBoards/DashBoard/DashBoard";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -53,10 +54,10 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashBoardLayout></DashBoardLayout>,
         children: [
-            // {
-            //     path: '/dashboard',
-            //     element: <DashBoard></DashBoard>
-            // },
+            {
+                path: '/dashboard',
+                element: <DashBoard ></DashBoard>
+            },
             {
                 path: '/dashboard/myorders',
                 element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>

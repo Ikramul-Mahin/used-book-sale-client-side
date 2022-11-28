@@ -2,8 +2,11 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div>
-            <progress className="progress w-56 bg-cyan-700 text-teal-500"></progress>
+        <div className='flex justify-center align-middle py-10'>
+            <div>
+                <progress className="progress bg-cyan-700 w-56 "></progress>
+            </div>
+
         </div>
     );
 };

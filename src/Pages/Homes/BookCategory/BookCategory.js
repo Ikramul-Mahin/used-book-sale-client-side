@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Loading from '../../../component/Loading/Loading';
+import { AuthContext } from '../../../context/AuthProvider';
 import CategoryCard from './CategoryCard/CategoryCard';
 
 const BookCategory = () => {
+    const { user, loading } = useContext(AuthContext)
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
@@ -9,6 +12,9 @@ const BookCategory = () => {
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className='pt-10'>
             <h2 className='text-4xl text-gray-600 font-semibold text-center py-8'>Book Category</h2>
