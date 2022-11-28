@@ -8,6 +8,7 @@ import Header from '../Shared/Header/Header';
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext)
     const [isAdmin] = useAdmin(user?.email)
+    console.log(isAdmin)
     const [isSeller] = useSeller(user?.email)
     return (
         <div>
@@ -28,7 +29,7 @@ const DashBoardLayout = () => {
                         <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
                         <li><Link to="/dashboard/reported">Reported</Link></li> */}
                         {
-                            user?.uid &&
+                            user?.uid && !isAdmin && !isSeller &&
                             < li > <Link to="/dashboard/myorders">My Order</Link></li>
                         }
 
