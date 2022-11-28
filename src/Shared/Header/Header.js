@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import logo from '../../asset/logo.png'
 import { AuthContext } from '../../context/AuthProvider';
@@ -6,8 +7,11 @@ const Header = () => {
     const { user, userSignOut } = useContext(AuthContext)
     console.log(user)
     const handleSignOut = () => {
+        toast.success('successfully log out')
         userSignOut()
-            .then(() => { })
+            .then(() => {
+
+            })
             .catch(err => console.log(err))
     }
     const menuItems = <React.Fragment>
