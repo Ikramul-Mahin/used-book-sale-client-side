@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../../component/Loading/Loading';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
@@ -29,6 +30,7 @@ const AddProduct = () => {
                     const products = {
                         email: data.email,
                         categoryName: data.categoryName,
+                        product_id: data.product_id,
                         bookname: data.name,
                         bookimage: imgData.data.url,
                         location: data.location,
@@ -43,18 +45,21 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                             "content-type": 'application/json',
-                            // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(products)
                     })
                         .then(res => res.json())
                         .then(result => {
                             console.log(result)
-                            toast.success('successfully login')
+                            toast.success('successfully added product')
                             navigate('/dashboard/myproduct')
                         })
                 }
             })
+    }
+    if (loading) {
+        return <Loading></Loading>
     }
 
     return (
@@ -77,6 +82,15 @@ const AddProduct = () => {
                         <option value="History">History</option>
                         <option value="Story">Story</option>
                         <option value="Idology">Idology</option>
+
+                    </select>
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Select product id</span> </label>
+                    <select className=' border p-4' {...register("product_id")}>
+                        <option value="01">1</option>
+                        <option value="02">2</option>
+                        <option value="03">3</option>
 
                     </select>
                 </div>
