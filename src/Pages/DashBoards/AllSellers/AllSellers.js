@@ -9,7 +9,7 @@ const AllSellers = () => {
     const { data: users = [], isLoading } = useQuery({
         queryKey: ['users', user?.role],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/seller`, {
+            const res = await fetch(`https://assignment-server-12.vercel.app/users/seller`, {
                 headers: {
                     authorization: `bearer${localStorage.getItem('accessToken')}`
                 }

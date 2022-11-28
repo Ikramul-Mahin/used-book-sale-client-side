@@ -41,7 +41,7 @@ const AddProduct = () => {
                         usedyear: data.usedyear
                     }
                     console.log(products)
-                    fetch('http://localhost:5000/bookcategories', {
+                    fetch('https://assignment-server-12.vercel.app/bookcategories', {
                         method: 'POST',
                         headers: {
                             "content-type": 'application/json',

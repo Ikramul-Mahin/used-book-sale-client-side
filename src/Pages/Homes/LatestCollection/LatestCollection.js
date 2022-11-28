@@ -11,7 +11,7 @@ const LatestCollection = () => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookcategories?email=${user?.email}`, {
+            const res = await fetch(`https://assignment-server-12.vercel.app/bookcategories?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer${localStorage.getItem('accessToken')}`
                 }

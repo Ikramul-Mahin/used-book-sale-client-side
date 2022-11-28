@@ -43,7 +43,7 @@ const SignUp = () => {
     }
     const saveUser = (email, name, role) => {
         const user = { email, name, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-server-12.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
