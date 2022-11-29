@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import AllBuyerTable from './AllBuyerTable';
 
 const AllBuyers = () => {
     const { data: users = [], refetch } = useQuery({
@@ -11,51 +12,35 @@ const AllBuyers = () => {
             return data
         }
     })
-    const handleMakeAdmin = id => {
-        fetch(`https://assignment-server-12.vercel.app/users/admin/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: `berer ${localStorage.getItem('accessToken')}`
-            }
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure u want to confirm!')
+        if (proceed) {
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.modifiedCount > 0) {
-                    toast.success('successfully make admin')
-                    refetch()
-                }
+            fetch(`https://assignment-server-12.vercel.app/users/${id}`, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Successfully deleted')
+                        refetch()
+                    }
+
+                })
+        }
     }
     return (
         <div>
+            <h2 className="text-3xl text-center">All Buyers</h2>
+            <hr />
             <div>
-                <h2 className="text-3xl text-center">All Buyers</h2>
-                <hr />
-                <div className="overflow-x-auto">
-                    <table className="table w-full">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                users.map((user, i) => <tr key={user._id}>
-                                    <th>{i + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td><button className='btn btn-sm  bg-red-700'>Delete</button></td>
-                                </tr>)
-                            }
+                <AllBuyerTable
+                    handleDelete={handleDelete}
+                    users={users}
+                ></AllBuyerTable>
 
-                        </tbody>
-                    </table>
-                </div>
+
             </div>
 
         </div>

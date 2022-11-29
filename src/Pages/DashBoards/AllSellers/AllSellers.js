@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import Loading from '../../../component/Loading/Loading';
 import { AuthContext } from '../../../context/AuthProvider';
+import AllSellerTable from './AllSellerTable';
 
 const AllSellers = () => {
     const { user } = useContext(AuthContext)
 
-    const { data: users = [], isLoading } = useQuery({
+    const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['users', user?.role],
         queryFn: async () => {
             const res = await fetch(`https://assignment-server-12.vercel.app/users/seller`, {
@@ -19,37 +21,34 @@ const AllSellers = () => {
             return data
         }
     })
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure u want to confirm!')
+        if (proceed) {
+
+            fetch(`https://assignment-server-12.vercel.app/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Successfully deleted')
+                        refetch()
+                    }
+
+                })
+        }
+    }
     if (isLoading) {
         return <Loading></Loading>
     }
 
     return (
         <div>
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Verify</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users.map((user, i) => <tr key={user._id}>
-                                <th>{i + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td> <button className='btn btn-sm bg-cyan-700'> Verify</button> </td>
-                                <td> <button className='btn btn-sm bg-red-700'> Delete</button> </td>
-                            </tr>)
-                        }
-
-                    </tbody>
-                </table>
-            </div>
+            <AllSellerTable
+                users={users}
+                handleDelete={handleDelete}
+            ></AllSellerTable>
         </div>
 
 
