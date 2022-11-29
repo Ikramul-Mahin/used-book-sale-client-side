@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext)
-    const { data: users = [], isLoading } = useQuery({
+    const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
             const res = await fetch(`https://assignment-server-12.vercel.app/bookings?email=${user?.email}`, {
@@ -24,7 +24,9 @@ const MyOrders = () => {
     return (
         <div>
             <div>
-                <h2 className="text-3xl">All Orders</h2>
+                <h2 className="text-3xl  text-center py-4">My Orders</h2>
+                <hr />
+
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
@@ -32,18 +34,21 @@ const MyOrders = () => {
                                 <th></th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Admin</th>
-                                <th>Delete</th>
+                                <th>Book Title</th>
+                                <th>Pay</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {users &&
-                                users?.map((user, i) => <tr key={user._id}>
+                            {bookings &&
+                                bookings?.map((booking, i) => <tr key={user._id}>
                                     <th>{i + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
+                                    <td>
+                                        {booking.name}
+                                    </td>
+                                    <td>{booking.email}</td>
+                                    <td>{booking?.bookname}</td>
+                                    <td> <button className='btn btn-sm bg-green-600'>Pay </button> </td>
                                     {/* <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td> */}
-                                    <td><button className='btn btn-xs btn-danger'>Delete</button></td>
                                 </tr>)
                             }
 

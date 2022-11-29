@@ -20,7 +20,7 @@ const DashBoardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80  text-base-content">
+                    <ul className="menu p-4 w-80 bg-cyan-700  text-white ">
 
 
                         {/* <li><Link to="/dashboard/addproduct">Add A Product</Link></li>
@@ -30,15 +30,15 @@ const DashBoardLayout = () => {
                         <li><Link to="/dashboard/reported">Reported</Link></li> */}
                         {
                             user?.uid && !isAdmin && !isSeller &&
-                            < li > <Link to="/dashboard/myorders">My Order</Link></li>
+                            < li className='border rounded' > <Link to="/dashboard/myorders">My Order</Link></li>
                         }
 
 
                         {
                             isSeller &&
                             <>
-                                <li><Link to="/dashboard/addproduct">Add A Product</Link></li>
-                                <li><Link to="/dashboard/myproduct">My Product</Link></li>
+                                <li className='border rounded my-2' ><Link to="/dashboard/addproduct">Add A Product</Link></li>
+                                <li className='border rounded my-2' ><Link to="/dashboard/myproduct">My Product</Link></li>
                             </>
                         }
 
@@ -47,9 +47,9 @@ const DashBoardLayout = () => {
                         {
                             isAdmin &&
                             <>
-                                <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
-                                <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                                <li><Link to="/dashboard/reported">Reported</Link></li>
+                                <li className='border rounded my-2' ><Link to="/dashboard/allbuyers">All Buyers</Link></li>
+                                <li className='border rounded my-2' ><Link to="/dashboard/allsellers">All Sellers</Link></li>
+                                <li className='border rounded my-2' ><Link to="/dashboard/reported">Reported</Link></li>
 
                             </>
                         }

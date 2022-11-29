@@ -25,8 +25,6 @@ const BookCategory = () => {
                     categories.map(category => <CategoryCard
                         key={category._id}
                         category={category}
-
-
                     ></CategoryCard>)
                 }
 

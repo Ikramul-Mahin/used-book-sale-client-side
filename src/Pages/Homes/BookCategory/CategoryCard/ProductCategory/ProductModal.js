@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'; // const { bookname } = product
+// console.log(bookname)
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../../../context/AuthProvider';
 
-const ProductModal = ({ products }) => {
-    const { bookname, OriginalPrice } = products
-    console.log(bookname, OriginalPrice)
+const ProductModal = ({ product }) => {
+    console.log(product)
+
+
+
     const { user } = useContext(AuthContext)
     console.log(user)
     const handleBooking = event => {
@@ -39,7 +42,9 @@ const ProductModal = ({ products }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                toast.success('Item is Booked')
+                toast.success('successfully product booked')
+
+
             })
     }
 
@@ -54,8 +59,8 @@ const ProductModal = ({ products }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name="name" type="text" defaultValue={user?.displayName} className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} placeholder="Email Address" className="input w-full input-bordered" />
-                        <input name="bookname" type="text" defaultValue={bookname} placeholder='Enter book name' className="input w-full input-bordered" />
-                        <input name="OriginalPrice" type="email" defaultValue={OriginalPrice} placeholder="Enter price" className="input w-full input-bordered" />
+                        <input name="bookname" type="text" placeholder='Enter book name' className="input w-full input-bordered" />
+                        <input name="OriginalPrice" type="text" placeholder="Enter price" className="input w-full input-bordered" />
                         <input name="location" type="text" placeholder="Your Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <br />
@@ -63,7 +68,7 @@ const ProductModal = ({ products }) => {
 
                         <div className="modal-action">
                             <label htmlFor="product-modal" type='submit' value='Close the Modal' className="btn bg-slate-300 text-black w-full">
-                                close The Modal
+                                Close The Order
                             </label>
                         </div>
 

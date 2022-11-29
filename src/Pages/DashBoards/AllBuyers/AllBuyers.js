@@ -6,7 +6,7 @@ const AllBuyers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://assignment-server-12.vercel.app/users')
+            const res = await fetch('https://assignment-server-12.vercel.app/users/user')
             const data = await res.json()
             return data
         }
@@ -49,7 +49,6 @@ const AllBuyers = () => {
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>{user?.role !== 'admin ' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
                                     <td><button className='btn btn-xs btn-danger'>Delete</button></td>
                                 </tr>)
                             }

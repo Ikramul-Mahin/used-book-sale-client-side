@@ -38,7 +38,7 @@ const LatestCollection = () => {
             </div>
             <div>
                 <ProductModal
-                    products={products}
+                    product={products}
                 ></ProductModal>
             </div>
 
