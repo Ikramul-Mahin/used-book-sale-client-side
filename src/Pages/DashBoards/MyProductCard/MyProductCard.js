@@ -1,7 +1,9 @@
 import React from 'react';
 
-const MyProductCard = ({ product }) => {
-    const { bookname, location, bookimage, posteddate, price, OriginalPrice, sellerName, usedyear } = product
+
+const MyProductCard = ({ product, handleDelete }) => {
+    const { bookname, location, bookimage, posteddate, price, OriginalPrice, sellerName, usedyear, _id } = product
+
 
 
     return (
@@ -25,11 +27,17 @@ const MyProductCard = ({ product }) => {
                 </div>
 
                 {/* <label htmlFor="product-modal" className='btn bg-cyan-700' >Advertise</label> */}
-                <div className='pb-4 '>
-                    <button className='btn w-32 text-right bg-cyan-700 ' >Advertise</button>
+                <div className='pb-4 flex  '>
+                    <div>
+                        <button className='btn btn-sm w-32 text-right bg-cyan-700 ' >Advertise</button>
+                    </div>
                     <div className="badge badge-secondary p-4 ml-24">
                         <p>Available</p>
                     </div>
+
+                </div>
+                <div>
+                    <button className='btn btn-sm btn-warning btn-btn-warning' onClick={() => handleDelete(_id)} >Delete Product</button>
                 </div>
 
 

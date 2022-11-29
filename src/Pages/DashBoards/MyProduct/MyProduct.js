@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+
 import Loading from '../../../component/Loading/Loading';
 import { AuthContext } from '../../../context/AuthProvider';
 import MyProductCard from '../MyProductCard/MyProductCard';
@@ -14,7 +16,7 @@ const MyProduct = () => {
     //         return data
     //     }
     // })
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
             const res = await fetch(`https://assignment-server-12.vercel.app/bookcategories?email=${user?.email}`, {
@@ -27,6 +29,24 @@ const MyProduct = () => {
             return data
         }
     })
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure u want to confirm!')
+        if (proceed) {
+
+            fetch(`https://assignment-server-12.vercel.app/bookcategories/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Successfully deleted')
+                        refetch()
+                    }
+
+                })
+        }
+    }
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -38,6 +58,8 @@ const MyProduct = () => {
                     products.map(product => <MyProductCard
                         product={product}
                         key={product._id}
+                        handleDelete={handleDelete}
+
                     ></MyProductCard>)
                 }
             </div>
