@@ -21,9 +21,6 @@
 
 
 
-
-
-
 ### client code
 
 This section has moved here: [ https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Ikramul-Mahin]( https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Ikramul-Mahin)
@@ -35,3 +32,11 @@ This link is here: [https://github.com/programming-hero-web-course-4/b612-used-p
 ### Live site Link
 
 This link is here: [ https://assignment-client-12.web.app]( https://assignment-client-12.web.app)
+
+
+## Admin Email 
+#### Admin-email: akib@mia.com
+
+## Admin Password 
+#### Admin-password: Akibmia12#
+

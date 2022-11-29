@@ -26,7 +26,6 @@ const LatestCollection = () => {
     }
     return (
         <div>
-            <h2 className='text-center text-4xl font-bold my-8'>Our Latest Books Collection</h2>
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
                 {

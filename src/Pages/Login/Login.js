@@ -8,7 +8,7 @@ import useToken from '../../hook/useToken';
 const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const { loginUser, forgetUser, user } = useContext(AuthContext)
+    const { loginUser, forgetUser, user, signWithGoggle } = useContext(AuthContext)
     const [loginError, setLoginError] = useState('')
     const [loginUserEmail, setLoginUserEmail] = useState('')
     const [token] = useToken(loginUserEmail)
@@ -34,6 +34,9 @@ const Login = () => {
                 setLoginError(error.message)
             })
 
+    }
+    const handleGoggle = () => {
+        signWithGoggle()
     }
     const handleForget = (data) => {
         console.log(data)
@@ -90,7 +93,7 @@ const Login = () => {
                 <div className="flex flex-col w-full border-opacity-50">
                     <div className="divider">OR</div>
                 </div>
-                <button className='btn btn-outline w-full'>Countinue With Google</button>
+                <button onClick={handleGoggle} className='btn btn-outline w-full'>Countinue With Google</button>
             </div>
         </div>
     );

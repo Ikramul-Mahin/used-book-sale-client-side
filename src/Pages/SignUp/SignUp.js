@@ -7,7 +7,7 @@ import useToken from '../../hook/useToken';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { createUser, userUpdate } = useContext(AuthContext)
+    const { createUser, userUpdate, signWithGoggle } = useContext(AuthContext)
     const [signUpError, setSignUPError] = useState('')
 
     const [createdUserEmail, setCreatedUserEmail] = useState('')
@@ -57,7 +57,9 @@ const SignUp = () => {
 
             })
     }
-
+    const handleGoggle = () => {
+        signWithGoggle()
+    }
 
     return (
 
@@ -119,7 +121,7 @@ const SignUp = () => {
                 <div className="flex flex-col w-full border-opacity-50">
                     <div className="divider">OR</div>
                 </div>
-                <button className='btn btn-outline w-full'>Countinue With Google</button>
+                <button onClick={handleGoggle} className='btn btn-outline w-full'>Countinue With Google</button>
             </div>
         </div>
     );

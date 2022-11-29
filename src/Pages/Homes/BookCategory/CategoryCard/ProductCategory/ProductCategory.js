@@ -21,6 +21,7 @@ const ProductCategory = ({ product }) => {
                     <div className="card-actions justify-end">
                         <div className="badge badge-outline">Date:{posteddate}</div>
                         <div className="badge badge-outline">OldPrice:{OriginalPrice}</div>
+                        <div title='Click to report about book.' className="badge badge-warning p-2"> <button className='text-md py-2 px-4'>Report</button> </div>
                     </div>
                 </div>
                 <label htmlFor="product-modal" className='btn bg-cyan-700' >Book Now</label>
